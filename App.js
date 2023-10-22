@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 // Video: https://www.youtube.com/watch?v=VozPNrt-LfE
@@ -5,17 +6,33 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 // Attachments & code snapshots: https://github.com/academind/react-native-practical-guide-code
 // goal.png File: https://github.com/academind/react-native-practical-guide-code/blob/02-basics/extra-files/goal.png
 
-// Stopped at 1:30:03
+// Stopped at 1:51:53
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  function goalInputHandler(enteredText) {
+    setEnteredGoalText(enteredText);
+  }
+
+  function addGoalHandler() {
+    setCourseGoals((currentCourseGoals) => [
+      ...courseGoals, enteredGoalText
+    ]);
+  }
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder='Your daily goal!' />
-        <Button title='Add Goal' />
+        <TextInput
+          style={styles.textInput}
+          placeholder='Your daily goal'
+          onChangeText={goalInputHandler} />
+        <Button title='Add Goal' onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text>List of goals...</Text>
+        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
       </View>
     </View>
   );
