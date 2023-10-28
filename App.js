@@ -8,7 +8,7 @@ import GoalInput from './components/GoalInput';
 // Attachments & code snapshots: https://github.com/academind/react-native-practical-guide-code
 // goal.png File: https://github.com/academind/react-native-practical-guide-code/blob/02-basics/extra-files/goal.png
 
-// Stopped at 2:46:57
+// Stopped at 2:51:52
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
