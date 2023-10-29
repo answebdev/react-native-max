@@ -18,11 +18,20 @@ export default function App() {
     setModalIsVisible(true);
   }
 
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
+
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       { text: enteredGoalText, id: Math.random().toString() }
     ]);
+    // To close the modal after adding a goal
+    // you can either do 'setModalIsVisible(false);'
+    // or do 'endAddGoalHandler();'.
+    // Both will work.
+    endAddGoalHandler();
   }
 
   // Delete an item.
@@ -43,7 +52,7 @@ export default function App() {
     <View style={styles.appContainer}>
       {/* This button controls the modal visibility (see modal in GoalInput.js): */}
       <Button title='Add New Goal' color='#5e0acc' onPress={startAddGoalHandler} />
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} />
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
